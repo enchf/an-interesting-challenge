@@ -1,0 +1,4 @@
+# Application configuration
+
+salesloft:
+  host: 'https://api.salesloft.com/'
