@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'grape'
+require './app/config/config_loader'
 
 require_relative 'people'
 
@@ -9,6 +10,10 @@ module SalesLoft
         version 'v1', using: :path
         format :json
         prefix :api
+
+        configure do
+            ConfigLoader.instance.load_config!
+        end
 
         mount People
 

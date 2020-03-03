@@ -4,13 +4,15 @@ require 'rsalesloft'
 require 'singleton'
 
 class SalesLoftController
+    PEOPLE_DATA = %w[display_name email_address title].freeze
+
     include Singleton
 
     def initialize
-        ::RSalesLoft.configure(api_key: Settings.salesloft.api_key)
+        ::RSalesloft.configure(api_key: Settings.salesloft.api_key)
     end
 
     def people_available
-        ::RSalesLoft::Resources::People::list
+        ::RSalesloft::Resources::People::list["data"].map { |row| row.slice(*PEOPLE_DATA) }
     end
 end

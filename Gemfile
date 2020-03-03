@@ -10,6 +10,7 @@ gem 'rsalesloft'
 group :test do
     gem 'byebug'
     gem 'colorize'
+    gem 'irb'
     gem 'minitest'
     gem 'minitest-reporters'
     gem 'mocha'
