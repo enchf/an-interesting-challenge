@@ -2,4 +2,5 @@
 **/.DS_Store
 
 # Test generated files
+.byebug_history
 coverage

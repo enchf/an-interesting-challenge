@@ -4,6 +4,7 @@ require 'simplecov'
 
 SimpleCov.start
 
+require 'byebug'
 require 'colorize'
 require 'json'
 require 'minitest/autorun'

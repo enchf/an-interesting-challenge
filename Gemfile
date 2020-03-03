@@ -7,6 +7,7 @@ gem 'grape'
 gem 'rake'
 
 group :test do
+    gem 'byebug'
     gem 'colorize'
     gem 'minitest'
     gem 'minitest-reporters'
