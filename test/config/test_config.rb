@@ -9,6 +9,7 @@ class TestConfig < Minitest::Test
 
         assert Settings
         assert_respond_to Settings, :salesloft
-        assert_respond_to Settings.salesloft, :host
+        assert_respond_to Settings.salesloft, :api_key
+        assert Settings.salesloft.api_key.start_with?('v2_ak_')
     end
 end

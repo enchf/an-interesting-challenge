@@ -5,6 +5,7 @@ source 'http://rubygems.org'
 gem 'config'
 gem 'grape'
 gem 'rake'
+gem 'rsalesloft'
 
 group :test do
     gem 'byebug'

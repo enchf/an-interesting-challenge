@@ -1,4 +1,4 @@
 # Application configuration
 
 salesloft:
-  host: 'https://api.salesloft.com/'
+  api_key: <%= ENV.fetch("SALESLOFT_KEY") %>
