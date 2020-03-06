@@ -5,12 +5,12 @@ require './test/test_helper'
 
 class TestPeople < TestRoute
     def setup
-        @salesloft_controller = mock
-        SalesLoftController.stubs(:instance).returns(@salesloft_controller)
+        @people_controller = mock
+        PeopleController.stubs(:instance).returns(@people_controller)
     end
 
     def test_people_list
-        @salesloft_controller.stubs(:people_available).returns(people_available)
+        @people_controller.stubs(:people_available).returns(people_available)
 
         get 'api/v1/people'
 

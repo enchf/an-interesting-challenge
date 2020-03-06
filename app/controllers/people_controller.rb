@@ -3,7 +3,7 @@
 require 'rsalesloft'
 require 'singleton'
 
-class SalesLoftController
+class PeopleController
     PEOPLE_DATA = %w[display_name email_address title].freeze
 
     include Singleton
