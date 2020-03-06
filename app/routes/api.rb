@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 require 'grape'
+require 'grape-erb'
+require 'tilt'
+
 require './app/config/config_loader'
 
 require_relative 'people'
@@ -8,8 +11,8 @@ require_relative 'people'
 module SalesLoft
     class API < Grape::API
         version 'v1', using: :path
-        format :json
         prefix :api
+        format :json
 
         configure do
             ConfigLoader.instance.load_config!

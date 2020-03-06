@@ -4,3 +4,6 @@
 # Test generated files
 .byebug_history
 coverage
+
+# Project generated files
+prepare.sh

@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'erb'
 require './test/test_helper'
 
 class TestPeople < TestRoute
@@ -13,17 +14,21 @@ class TestPeople < TestRoute
 
         get 'api/v1/people'
 
-        response = JSON.parse(last_response.body)
-        assert_equal people_available, response.map { |row| row.transform_keys(&:to_sym) }
+        @users = people_available
+        html_response = last_response.body
+        erb = ERB.new(File.read('./app/views/people/show.html.erb')).result(binding)
+
+        assert_equal 200, last_response.status
+        assert_equal erb, html_response
     end
 
     private
 
     def people_available
         [
-            { name: 'Ernesto', email: 'ernesto@salesloft.com', job_title: 'Software engineer' },
-            { name: 'Ismael', email: 'ismael@salesloft.com', job_title: 'Software engineer' },
-            { name: 'Eddie', email: 'eddie@salesloft.com', job_title: 'Software recruiter' }
+            { 'display_name' => 'Ernesto', 'email_address' => 'ernesto@salesloft.com', 'title' => 'Software engineer' },
+            { 'display_name' => 'Ismael', 'email_address' => 'ismael@salesloft.com', 'title' => 'Software engineer' },
+            { 'display_name' => 'Eddie', 'email_address' => 'eddie@salesloft.com', 'title' => 'Software recruiter' }
         ]
     end
 end

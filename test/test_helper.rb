@@ -22,6 +22,6 @@ class TestRoute < Minitest::Test
     include Rack::Test::Methods
 
     def app
-        SalesLoft::API
+        @app ||= Rack::Builder.parse_file('./config.ru').first
     end
 end

@@ -4,6 +4,7 @@ source 'http://rubygems.org'
 
 gem 'config'
 gem 'grape'
+gem 'grape-erb'
 gem 'rake'
 gem 'rsalesloft'
 

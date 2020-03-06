@@ -1,0 +1,15 @@
+<html>
+    <head>
+        <title>People List</title>
+    </head>
+    <body>
+        <div><% @users.join('-') %></div>
+        <table><% @users.each do |user| %>
+            <tr>
+                <td>Name: <%= user['display_name'] %></td>
+                <td>Email: <%= user['email_address'] %></td>
+                <td>Job Title: <%= user['title'] %></td>
+            </tr><% end %>
+        </table>
+    </body>
+</html>
