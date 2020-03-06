@@ -1,15 +1,30 @@
 <html>
     <head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" 
+              integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" 
+              crossorigin="anonymous"> 
         <title>People List</title>
     </head>
     <body>
-        <div><% @users.join('-') %></div>
-        <table><% @users.each do |user| %>
-            <tr>
-                <td>Name: <%= user['display_name'] %></td>
-                <td>Email: <%= user['email_address'] %></td>
-                <td>Job Title: <%= user['title'] %></td>
-            </tr><% end %>
-        </table>
+        <div class="container">
+            <table class="table">
+                <thead>
+                    <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Job Title</th>
+                    </tr>
+                </thead>
+                <tbody><% @users.each_with_index do |user, index| %>
+                    <tr>
+                        <th scope="row"><%= index + 1 %></th>
+                        <td><%= user['display_name'] %></td>
+                        <td><%= user['email_address'] %></td>
+                        <td><%= user['title'] %></td>
+                    </tr>
+                </tbody><% end %>
+            </table>
+        </div>
     </body>
 </html>
