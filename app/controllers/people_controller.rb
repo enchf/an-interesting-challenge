@@ -13,6 +13,12 @@ class PeopleController
     end
 
     def people_available
-        ::RSalesloft::Resources::People::list["data"].map { |row| row.slice(*PEOPLE_DATA) }
+        all_people_from_salesloft.map { |row| row.slice(*PEOPLE_DATA) }
+    end
+
+    private
+
+    def all_people_from_salesloft
+        ::RSalesloft::Resources::People::list["data"]
     end
 end
