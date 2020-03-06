@@ -30,7 +30,10 @@ class PeopleController
         emails = all_salesloft_emails.each_with_index
 
         emails.map do |email, index|
-            emails.select { |other_email, jindex| index != jindex && string_distance(email, other_email) < 3 }
+            [
+                email,
+                emails.select { |other_email, jindex| index != jindex && string_distance(email, other_email) < 3 }
+            ]
         end
     end
 
