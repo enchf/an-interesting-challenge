@@ -22,5 +22,12 @@ module SalesLoft
                 @frequency_map = PeopleController.instance.emails_characters_frequency_map
             end
         end
+
+        resource :duplicates do
+            desc 'Show per email the possible duplicates in People list'
+            get erb: 'people/duplicates' do
+                @duplicates = PeopleController.instance.possible_duplicate_people
+            end
+        end
     end
 end

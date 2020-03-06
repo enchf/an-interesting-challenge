@@ -33,6 +33,7 @@ class PeopleController
             [
                 email,
                 emails.select { |other_email, jindex| index != jindex && string_distance(email, other_email) < 3 }
+                      .map(&:first)
             ]
         end
     end
