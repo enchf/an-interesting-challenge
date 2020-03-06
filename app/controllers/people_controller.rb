@@ -3,10 +3,13 @@
 require 'rsalesloft'
 require 'singleton'
 
+require './app/helpers/characters'
+
 class PeopleController
     PEOPLE_DATA = %w[display_name email_address title].freeze
 
     include Singleton
+    include Characters
 
     def initialize
         ::RSalesloft.configure(api_key: Settings.salesloft.api_key)
@@ -17,14 +20,25 @@ class PeopleController
     end
 
     def emails_characters_frequency_map
-        all_people_from_salesloft.map { |row| row['email_address'] }
-                                 .map { |email| email.split('').group_by(&:itself).transform_values(&:size) }
-                                 .reduce({}) { |acc, hash| acc.merge(hash) { |_, oldval, newval| oldval + newval } }
-                                 .sort_by { |_, v| -v }
-                                 .to_h
+        all_salesloft_emails.map(&method(:charmap))
+                            .reduce({}) { |acc, hash| acc.merge(hash) { |_, oldval, newval| oldval + newval } }
+                            .sort_by { |_, v| -v }
+                            .to_h
+    end
+
+    def possible_duplicate_people
+        emails = all_salesloft_emails.each_with_index
+
+        emails.map do |email, index|
+            emails.select { |other_email, jindex| index != jindex && string_distance(email, other_email) < 3 }
+        end
     end
 
     private
+
+    def all_salesloft_emails
+        all_people_from_salesloft.map { |row| row['email_address'] }
+    end
 
     def all_people_from_salesloft
         page = 1
