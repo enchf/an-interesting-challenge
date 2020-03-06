@@ -16,11 +16,11 @@
                     <th scope="col">Count</th>
                     </tr>
                 </thead>
-                <tbody><% @frequency_map.each_with_index do |row, index| %>
+                <tbody><% @frequency_map.each_with_index do |(character, frequency), index| %>
                     <tr>
                         <th scope="row"><%= index + 1 %></th>
-                        <td><%= row['character'] %></td>
-                        <td><%= row['email_address'] %></td>
+                        <td><%= character %></td>
+                        <td><%= frequency %></td>
                     </tr>
                 </tbody><% end %>
             </table>
