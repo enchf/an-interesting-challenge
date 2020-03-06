@@ -1,4 +1,4 @@
-# SalesLoft challenge.
+# An interesting challenge.
 
 Application challenge is composed of four levels.
 
